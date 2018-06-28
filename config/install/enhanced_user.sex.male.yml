@@ -1,0 +1,5 @@
+langcode: zh-hans
+status: true
+dependencies: {  }
+id: male
+label: 男性

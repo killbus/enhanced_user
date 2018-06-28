@@ -1,0 +1,9 @@
+
+# Sex menu items definition
+entity.sex.collection:
+  title: 'Sex'
+  route_name: entity.sex.collection
+  description: 'List Sex (bundles)'
+  parent: system.admin_structure
+  weight: 99
+
