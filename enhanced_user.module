@@ -80,6 +80,17 @@ function enhanced_user_entity_base_field_info(EntityTypeInterface $entity_type) 
             ])
             ->setDisplayConfigurable('view', true)
             ->setDisplayConfigurable('form', true);
+
+      $fields['birthday'] = BaseFieldDefinition::create('datetime')
+        ->setLabel(t('生日'))
+        ->setSetting('datetime_type', 'date')
+        ->setDisplayOptions('view', [
+          'label' => 'above',
+          'type' => 'datetime_default',
+        ])
+        ->setDisplayOptions('form', [
+          'type' => 'datetime_default',
+        ]);
     }
     return $fields;
 }
