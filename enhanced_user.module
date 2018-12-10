@@ -56,6 +56,7 @@ function enhanced_user_entity_base_field_info(EntityTypeInterface $entity_type) 
 
     $fields['nick_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('昵称'))
+      ->setDescription(t('The nickname of the user, not the username.'))
       ->setDefaultValue('新用户')
       ->setDisplayOptions('view', [
         'label' => 'inline',
@@ -69,6 +70,7 @@ function enhanced_user_entity_base_field_info(EntityTypeInterface $entity_type) 
 
     $fields['sex'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('性别'))
+      ->setDescription(t('Sex of the user.'))
       ->setSetting('target_type', 'sex')
       ->setSetting('handler', 'default')
       ->setDisplayOptions('view', [
@@ -83,6 +85,7 @@ function enhanced_user_entity_base_field_info(EntityTypeInterface $entity_type) 
 
     $fields['birthday'] = BaseFieldDefinition::create('datetime')
       ->setLabel(t('生日'))
+      ->setDescription(t('Birthday of the user.'))
       ->setSetting('datetime_type', 'date')
       ->setDisplayOptions('view', [
         'label' => 'above',
