@@ -1,5 +1,8 @@
-langcode: zh-hans
+langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  enforced:
+    module:
+      - enhanced_user
 id: male
-label: 男性
+label: Male

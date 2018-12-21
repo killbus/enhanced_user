@@ -1,5 +1,8 @@
-langcode: zh-hans
+langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  enforced:
+    module:
+      - enhanced_user
 id: female
-label: 女性
+label: Female

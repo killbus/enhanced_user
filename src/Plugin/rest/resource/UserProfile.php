@@ -93,7 +93,7 @@ class UserProfile extends ResourceBase {
     }
 
     if ((int)$this->currentUser->id() !== (int)$user->id())
-      throw new AccessDeniedHttpException('只能修改自己的资料。');
+      throw new AccessDeniedHttpException(t('Only can change own profile.'));
 
     if (isset($data['nick_name']) && !empty($data['nick_name'])) {
       $user->set('nick_name', $data['nick_name']);

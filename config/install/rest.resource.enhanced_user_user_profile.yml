@@ -1,6 +1,9 @@
-langcode: zh-hans
+langcode: en
 status: true
 dependencies:
+  enforced:
+    module:
+      - enhanced_user
   module:
     - basic_auth
     - enhanced_user
