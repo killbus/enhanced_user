@@ -41,8 +41,12 @@ function enhanced_user_theme() {
  * Implements hook_install().
  */
 function enhanced_user_install() {
+  // 为已认证用户添加权限
   $permissions = [
-    'restful patch enhanced_user_user_profile'
+    'restful patch enhanced_user_user_profile',
+    'restful get enhanced_user_user_info',
+    'restful post enhanced_user_upload_avatar',
+    'restful post enhanced_user_reset_password'
   ];
   user_role_grant_permissions(RoleInterface::AUTHENTICATED_ID, $permissions);
 }
