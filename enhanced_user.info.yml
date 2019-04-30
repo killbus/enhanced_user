@@ -4,9 +4,4 @@ description: 'Provides enhanced user features for core user module.'
 core: 8.x
 package: User
 dependencies:
-  - drupal:basic_auth
-  - enhanced_user:enhanced_user
-  - drupal:rest
-  - drupal:serialization
-  - simple_oauth:simple_oauth
   - drupal:user
