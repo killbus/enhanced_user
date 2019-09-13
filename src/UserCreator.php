@@ -2,7 +2,7 @@
 
 namespace Drupal\enhanced_user;
 use Drupal\Component\Utility\Unicode;
-use Drupal\language\ConfigurableLanguageManagerInterface;
+use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 
 /**
@@ -25,7 +25,7 @@ class UserCreator implements UserCreatorInterface {
   /**
    * Constructs a new UserCreator object.
    */
-  public function __construct(ConfigurableLanguageManagerInterface $language_manager, LoggerChannelFactoryInterface $logger_factory) {
+  public function __construct(LanguageManagerInterface $language_manager, LoggerChannelFactoryInterface $logger_factory) {
     $this->languageManager = $language_manager;
     $this->loggerFactory = $logger_factory;
   }
@@ -38,12 +38,15 @@ class UserCreator implements UserCreatorInterface {
    * @param string $email
    *   User's email address.
    *
+   * @param array $roles
    * @return \Drupal\user\Entity\User|false
    *   Drupal user account if user was created
    *   False otherwise
-   * @throws \Exception
+   * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
+   * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
+   * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function createUser($name, $email) {
+  public function createUser($name, $email, $roles = []) {
 
     // Check if site configuration allows new users to register.
     if ($this->isRegistrationDisabled()) {
@@ -60,7 +63,11 @@ class UserCreator implements UserCreatorInterface {
     /** @var \Drupal\user\Entity\User $new_user */
     $new_user = \Drupal::entityTypeManager()->getStorage('user')
       ->create($fields);
+    foreach ($roles as $role) {
+      $new_user->addRole($role);
+    }
 
+    $new_user->activate();
     $new_user->save();
 
     return $new_user;
