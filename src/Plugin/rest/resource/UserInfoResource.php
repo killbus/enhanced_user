@@ -91,12 +91,6 @@ class UserInfoResource extends ResourceBase
      */
     public function get()
     {
-        // You must to implement the logic of your REST Resource here.
-        // Use current user after pass authentication to validate access.
-        if (!$this->currentUser->hasPermission('access content')) {
-            throw new AccessDeniedHttpException();
-        }
-
         $user = User::load($this->currentUser->id());
         $data = [
             'base' => $user,

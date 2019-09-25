@@ -90,13 +90,6 @@ class UploadAvatar extends ResourceBase
      */
     public function post(User $user, $data)
     {
-
-        // You must to implement the logic of your REST Resource here.
-        // Use current user after pass authentication to validate access.
-        if (!$this->currentUser->hasPermission('access content')) {
-            throw new AccessDeniedHttpException();
-        }
-
         if ($data['base64']) {
             $this->fileData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $data['base64']));
             if ($this->fileData === FALSE) {

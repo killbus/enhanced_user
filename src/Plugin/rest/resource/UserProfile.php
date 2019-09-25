@@ -86,12 +86,6 @@ class UserProfile extends ResourceBase {
    */
   public function patch(User $user, $data) {
 
-    // You must to implement the logic of your REST Resource here.
-    // Use current user after pass authentication to validate access.
-    if (!$this->currentUser->hasPermission('access content')) {
-      throw new AccessDeniedHttpException();
-    }
-
     if ((int)$this->currentUser->id() !== (int)$user->id())
       throw new AccessDeniedHttpException(t('Only can change own profile.'));
 

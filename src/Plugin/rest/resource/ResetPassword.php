@@ -88,13 +88,6 @@ class ResetPassword extends ResourceBase
      */
     public function post(User $user, $data)
     {
-
-        // You must to implement the logic of your REST Resource here.
-        // Use current user after pass authentication to validate access.
-        if (!$this->currentUser->hasPermission('access content')) {
-            throw new AccessDeniedHttpException();
-        }
-
         if (isset($data['new_password']))
             $user->setPassword($data['new_password']);
 
