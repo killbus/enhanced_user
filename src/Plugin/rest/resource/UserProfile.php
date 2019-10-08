@@ -3,6 +3,7 @@
 namespace Drupal\enhanced_user\Plugin\rest\resource;
 
 use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\datetime\Plugin\Field\FieldType\DateTimeItem;
 use Drupal\enhanced_user\Entity\Sex;
@@ -21,7 +22,7 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
  *   id = "enhanced_user_user_profile",
  *   label = @Translation("Enhanced user profile"),
  *   uri_paths = {
- *     "canonical" = "/api/rest/enhanced-user/user-profile/{user}"
+ *     "canonical" = "/api/rest/enhanced-user/user-profile"
  *   }
  * )
  */
@@ -84,10 +85,12 @@ class UserProfile extends ResourceBase {
    * @return \Drupal\rest\ModifiedResourceResponse
    *   The HTTP response object.
    */
-  public function patch(User $user, $data) {
+  public function patch($data) {
 
-    if ((int)$this->currentUser->id() !== (int)$user->id())
+    if (!($this->currentUser instanceof AccountInterface))
       throw new AccessDeniedHttpException(t('Only can change own profile.'));
+
+    $user = User::load($this->currentUser->id());
 
     if (isset($data['nick_name']) && !empty($data['nick_name'])) {
       $user->set('nick_name', $data['nick_name']);
