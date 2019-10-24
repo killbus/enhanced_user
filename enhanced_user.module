@@ -9,6 +9,7 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\user\RoleInterface;
+use Drupal\user\Entity\User;
 
 /**
  * Implements hook_help().
@@ -100,4 +101,15 @@ function enhanced_user_entity_base_field_info(EntityTypeInterface $entity_type) 
       ]);
   }
   return $fields;
+}
+
+
+
+
+function enhanced_user_wechat_upload_file($file, $data) {
+  if ($data['file_type'] === 'user_avatar') {
+    $user = User::load(\Drupal::currentUser()->id());
+    $user->set('user_picture', $file);
+    $user->save();
+  }
 }
