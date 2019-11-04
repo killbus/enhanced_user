@@ -11,6 +11,6 @@
     "source": "http://cgit.drupalcode.org/enhanced_user"
   },
   "require": {
-    "drupal/simple_oauth": "^3.0"
+    "drupal/simple_oauth": "^4.0"
   }
 }

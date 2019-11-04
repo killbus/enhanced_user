@@ -2,3 +2,7 @@ services:
   enhanced_user.user_creator:
     class: Drupal\enhanced_user\UserCreator
     arguments: ['@language_manager', '@logger.factory']
+  enhanced_user.route_subscriber:
+    class: Drupal\enhanced_user\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
