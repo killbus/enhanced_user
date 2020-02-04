@@ -46,7 +46,7 @@ class UserCreator implements UserCreatorInterface {
    * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
    * @throws \Drupal\Core\Entity\EntityStorageException
    */
-  public function createUser($name, $email, $roles = []) {
+  public function createUser($name, $email = null, $roles = []) {
 
     // Check if site configuration allows new users to register.
     if ($this->isRegistrationDisabled()) {

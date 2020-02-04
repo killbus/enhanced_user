@@ -6,5 +6,5 @@ namespace Drupal\enhanced_user;
  * Interface UserCreatorInterface.
  */
 interface UserCreatorInterface {
-  public function createUser($name, $email);
+  public function createUser($name, $email = null, $roles = []);
 }
